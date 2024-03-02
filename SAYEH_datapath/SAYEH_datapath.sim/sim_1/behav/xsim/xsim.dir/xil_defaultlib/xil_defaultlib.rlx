@@ -1,0 +1,14 @@
+0.7
+2020.2
+Oct 13 2023
+20:47:58
+D:/Electronic and Telecomunication/RTL_design/CPU design/SAYEH_datapath/SAYEH_datapath.sim/sim_1/behav/xsim/glbl.v,1697210495,verilog,,,,glbl,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/SAYEH_datapath/SAYEH_datapath.srcs/sources_1/new/DataPath.v,1709125953,verilog,,,,DataPath,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/address_logic/address_logic.srcs/sources_1/new/AddressLogic.v,1709112862,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/addressing_unit/addressing_unit.srcs/sources_1/new/AddressingUnit.v,,AddressLogic,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/addressing_unit/addressing_unit.srcs/sources_1/new/AddressingUnit.v,1709113766,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/arithmetic_logic_unit/arithmetic_logic_unit.srcs/sources_1/new/ArithmeticUnit.v,,AddressingUnit,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/arithmetic_logic_unit/arithmetic_logic_unit.srcs/sources_1/new/ArithmeticUnit.v,1709114350,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/instruction_register/instruction_register.srcs/sources_1/new/InstrunctionRegister.v,,ArithmeticUnit,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/instruction_register/instruction_register.srcs/sources_1/new/InstrunctionRegister.v,1709114827,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/program_counter/program_counter.srcs/sources_1/new/ProgramCounter.v,,InstrunctionRegister,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/program_counter/program_counter.srcs/sources_1/new/ProgramCounter.v,1709112252,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/register_file/register_file.srcs/sources_1/new/RegisterFile.v,,ProgramCounter,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/register_file/register_file.srcs/sources_1/new/RegisterFile.v,1709115684,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/status_register/status_register.srcs/sources_1/new/StatusRegister.v,,RegisterFile,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/status_register/status_register.srcs/sources_1/new/StatusRegister.v,1709127451,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/window_pointer/window_pointer.srcs/sources_1/new/WindowPointer.v,,StatusRegister,,,,,,,,
+D:/Electronic and Telecomunication/RTL_design/CPU design/window_pointer/window_pointer.srcs/sources_1/new/WindowPointer.v,1709127626,verilog,,D:/Electronic and Telecomunication/RTL_design/CPU design/SAYEH_datapath/SAYEH_datapath.srcs/sources_1/new/DataPath.v,,WindowPointer,,,,,,,,

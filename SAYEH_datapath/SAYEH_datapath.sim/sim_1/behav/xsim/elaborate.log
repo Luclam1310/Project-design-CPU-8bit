@@ -1,0 +1,25 @@
+Vivado Simulator v2023.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot DataPath_behav xil_defaultlib.DataPath xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 16 differs from formal bit length 1 for port 'ResetPC' [D:/Electronic and Telecomunication/RTL_design/CPU design/addressing_unit/addressing_unit.srcs/sources_1/new/AddressingUnit.v:29]
+WARNING: [VRFC 10-3091] actual bit length 2 differs from formal bit length 1 for port 'RFLwrite' [D:/Electronic and Telecomunication/RTL_design/CPU design/SAYEH_datapath/SAYEH_datapath.srcs/sources_1/new/DataPath.v:57]
+WARNING: [VRFC 10-3129] assignment to input 'Rplus0' [D:/Electronic and Telecomunication/RTL_design/CPU design/addressing_unit/addressing_unit.srcs/sources_1/new/AddressingUnit.v:29]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ProgramCounter
+Compiling module xil_defaultlib.AddressLogic
+Compiling module xil_defaultlib.AddressingUnit
+Compiling module xil_defaultlib.ArithmeticUnit
+Compiling module xil_defaultlib.RegisterFile
+Compiling module xil_defaultlib.InstrunctionRegister
+Compiling module xil_defaultlib.StatusRegister
+Compiling module xil_defaultlib.WindowPointer
+Compiling module xil_defaultlib.DataPath
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot DataPath_behav
