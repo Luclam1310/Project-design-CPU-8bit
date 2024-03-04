@@ -51,22 +51,18 @@ integer B15to0H_false, AandBH_false, AorBH_false, notBH_false, shlBH_false, shrB
 integer random_num;
 logic scoreboard;
 
-//############    initial value   ###################
 initial begin
+//############    initial value   ###################
   {B15to0H_case, AandBH_case, AorBH_case, notBH_case, shlBH_case, shrBH_case, AaddBH_case, AsubBH_case, AmulBH_case, AcmpBH_case} = 10'b0;
   {B15to0H_execute, AandBH_execute, AorBH_execute, notBH_execute, shlBH_execute, shrBH_execute, AaddBH_execute, AsubBH_execute, AmulBH_execute, AcmpBH_execute} = 10'b0;
   {B15to0H_pass, AandBH_pass, AorBH_pass, notBH_pass, shlBH_pass, shrBH_pass, AaddBH_pass, AsubBH_pass, AmulBH_pass, AcmpBH_pass} = 10'b0;
   {B15to0H_false, AandBH_false, AorBH_false, notBH_false, shlBH_false, shrBH_false, AaddBH_false, AsubBH_false, AmulBH_false, AcmpBH_false} = 10'b0;
   
   random_num = 20;
-  scoreboard = 1'b0;
-end
-// ##############################################
 
-// ##########   directed special case verification    #########
 // ##########   random verification   #########
-initial begin
   #1;
+  {B15to0H_case,AandBH_case,AorBH_case,notBH_case,shlBH_case,shrBH_case,AaddBH_case,AsubBH_case,AmulBH_case,AcmpBH_case} += {10{random_num}};
   for (int i = 0; i < 10; i++) begin
     instruction = 10'b00_0000_0000;
     instruction[i] = 1'b1;
@@ -78,14 +74,40 @@ initial begin
       #5; 
     end
   end
-  scoreboard = 1'b1;
-end
-// ##############################################
 
+// ##########   directed special case verification    #########
+  {B15to0H_case,AandBH_case,AorBH_case,notBH_case,shlBH_case,shrBH_case,AcmpBH_case} += {7{32'd10}};
+  {AaddBH_case,AsubBH_case,AmulBH_case} += {3{32'd20}};
+
+  repeat(10)begin //zout = 1'b1 case
+    instruction = `B15to0H;   A = $random();    B = 16'h0000;   cin = $random();    #5;
+    instruction = `AandBH;
+    A = $random();
+    for(int i = 0; i < 16; i++) begin
+      if(A[i] == 1'b1) begin
+        B[i] = 1'b0;
+      end else begin
+        B[i] = $random();
+      end
+    end
+    cin = $random();    #5;
+    instruction = `AorBH;     A = 16'h0000;     B = 16'h0000;   cin = $random();    #5;
+    instruction = `notBH;     A = $random();    B = 16'hffff;   cin = $random();    #5;
+    instruction = `shlBH;     A = $random();    B = 16'h0000;   cin = $random();    #5;
+    instruction = `shrBH;     A = $random();    B = 16'h0000;   cin = $random();    #5;
+    instruction = `AaddBH;
+    A = $random();    B = 16'h0000 - A;     cin = 1'b0;       #5;
+    A = $random();    B = 16'h0000 - A - 1; cin = 1'b1;       #5;
+    instruction = `AsubBH;
+    A = $random();    B = A;          cin = 1'b0;         #5;
+    A = $random();    B = A + 1;      cin = 1'b1;         #5;
+    instruction = `AmulBH;
+    A = $random();    B = 16'h0000;   cin = $random();    #5;
+    A = 16'h0000;     B = $random();  cin = $random();    #5;
+    instruction = `AcmpBH;
+    A = $random();    B = A;          cin = $random();    #5;
+  end
 //#########     scoreboard     ##############
-initial begin
-  @(scoreboard);
-
   $display("scoreboard\n");
 
   $display("B15to0H_case = %d", B15to0H_case);
@@ -129,15 +151,33 @@ end
 //#############   checker   ################
 always @(A or B or cin or instruction or aluout or zout or cout) begin // zout
   #1;
-  if(aluout == 16'h0000) begin
-    if(zout == 1'b1) begin
+  if(instruction == 10'b00_0000_0001) begin
+    if(A == B) begin
+      if(zout == 1'b1) begin
+      end else begin
+        $display("zout flag didnt active");
+        $display("instruction = %b\tA = %h\tB = %h\tcin = %h\naluout = %h\tzout = %b\tcout = %b\n", instruction, A, B, cin, aluout, zout, cout);
+      end
     end else begin
-      $display("zout flag didnt active");
+      if(zout == 1'b1) begin
+        $display("zout flag was actived accidentally ");
+        $display("instruction = %b\tA = %h\tB = %h\tcin = %h\naluout = %h\tzout = %b\tcout = %b\n", instruction, A, B, cin, aluout, zout, cout);
+      end else begin
+      end
     end
   end else begin
-    if(zout == 1'b1) begin
-      $display("zout flag was actived accidentally ");
+    if(aluout == 16'h0000) begin
+      if(zout == 1'b1) begin
+      end else begin
+        $display("zout flag didnt active");
+        $display("instruction = %b\tA = %h\tB = %h\tcin = %h\naluout = %h\tzout = %b\tcout = %b\n", instruction, A, B, cin, aluout, zout, cout);
+      end
     end else begin
+      if(zout == 1'b1) begin
+        $display("zout flag was actived accidentally ");
+        $display("instruction = %b\tA = %h\tB = %h\tcin = %h\naluout = %h\tzout = %b\tcout = %b\n", instruction, A, B, cin, aluout, zout, cout);
+      end else begin
+      end
     end
   end
 end
@@ -153,7 +193,7 @@ always @(A or B or cin or instruction or aluout or zout or cout) begin // alu vs
                   $display("---------false_B15to0H--------");
                   $display("A = %h\tB = %h\tcin = %h\naluout = %h\tzout = %b\tcout = %b\n", A, B, cin, aluout, zout, cout);
                   B15to0H_false = B15to0H_false + 1;
-                end
+end
               end
     `AandBH:  begin
                 #1;
@@ -270,7 +310,11 @@ always @(A or B or cin or instruction or aluout or zout or cout) begin // alu vs
                 end
               end
     default:  begin
-                $display("undefined instruction");
+                if(aluout == 16'h0000) begin
+                  $display("default instruction pass");
+                end else begin
+                  $display("default instruction false");
+                end
               end
   endcase
 end
